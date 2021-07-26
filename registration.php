@@ -131,7 +131,7 @@
  
 	?>
 
-	<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
+	<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST" name="regform" onsubmit="return isValid()">
 	   <fieldset>	
 	   <legend>Basic Information:</legend>
 	   <label for="fname">First name: </label> 
@@ -214,9 +214,23 @@
 	   <input class="submit" type="submit" value="Register">
 	   <span style="color: green;"><?php echo $successMessage; ?></span>
        <span style="color: red;"><?php echo $errMessage; ?></span>
-
 	     
 </form>
+
+<script>
+	function isvalid() 
+	{
+		var fname = document.forms["regform"]["fname"].value;
+		var lname = document.forms["regform"]["lname"].value;
+		var gender = document.forms["regform"]["gender"].value;
+		var dob = document.forms["regform"]["dob"].value;
+		var religion = document.forms["regform"]["religion"].value;
+		var email = document.forms["regform"]["email"].value;
+		var username = document.forms["regform"]["username"].value;
+		var password = document.forms["regform"]["password"].value;
+		return false;
+	}
+</script>
 
 <p>Already an user? <a href="login-form.php">Click Here</a> to log in.</p>
 
