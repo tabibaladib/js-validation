@@ -79,7 +79,7 @@
 <body>
 	<h1><?php include 'header.php'; ?></h1>
 
-	<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST">
+	<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="POST" name="regform" onsubmit="return isValid()">
 	   
 
 	   </fieldset>
@@ -88,12 +88,12 @@
 	   <legend>Log In form:</legend>
 	   <label for="username">Username: </label> 
 	   <input type="text" id="username" name="username" value="<?php echo $uid;?>">
-	   <span style="color: red;"><?php echo $usernameErr; ?></span>
+	   <span style="color: red; " id = "usernameErr"><?php echo $usernameErr; ?></span>
 	   <br> <br>
 
 	   <label for="password">Password: </label> 
 	   <input type="password" id="password" name="password">
-	   <span style="color: red;"><?php echo $passwordErr; ?></span>
+	   <span style="color: red;" id = "passwordErr"><?php echo $passwordErr; ?></span>
 	   <br>
        <br>
       
@@ -109,6 +109,38 @@
 
 	     
 </form>
+
+<script>
+	function isValid() 
+	{
+		var flag = true;
+
+		var usernameErr = document.getElementById("usernameErr");
+		var passwordErr = document.getElementById("passwordErr");
+
+		var username = document.forms["regform"]["username"].value;
+		var password = document.forms["regform"]["password"].value;
+
+		usernameErr.innerHTML = "";
+		passwordErr.innerHTML = "";
+
+		if(username === "")
+		{
+			flag = false;
+			document.getElementById("usernameErr").innerHTML = "Username can't be empty!";
+		}
+
+		if(password === "")
+		{
+			flag = false;
+			document.getElementById("passwordErr").innerHTML = "Password can't be empty!";
+		}
+
+	
+		return flag;
+
+	}
+</script>
 <br><br>
 <p>New user? <a href="registration.php">Click Here</a> for registration.</p>
 </fieldset>
